@@ -3,6 +3,7 @@ package com.example.demo.config;
 import com.example.demo.domain.Post;
 import com.example.demo.domain.User;
 import com.example.demo.dto.AutorDTO;
+import com.example.demo.dto.ComentDTO;
 import com.example.demo.repositories.PostRepository;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,11 @@ public class Instanciation implements CommandLineRunner {
         Post post1 = new Post(null, sdf.parse("21/03/2018"), "Primeiro Post", "Teste de postagem", new AutorDTO(fernanda));
         Post post2 = new Post(null, sdf.parse("22/03/2018"), "Teste Post", "Teste de postagem 2", new AutorDTO(douglas));
 
+        ComentDTO comentDTO1 = new ComentDTO("Bom teste", sdf.parse("22/03/2018"), new AutorDTO(douglas));
+        ComentDTO comentDTO2 = new ComentDTO("Bom teste2", sdf.parse("22/03/2018"), new AutorDTO(fernanda));
+
+        post1.getComments().addAll(Arrays.asList(comentDTO1));
+        post2.getComments().addAll(Arrays.asList(comentDTO2));
 
         postRepository.saveAll(Arrays.asList(post1, post2));
 
