@@ -46,5 +46,11 @@ public class Instanciation implements CommandLineRunner {
 
 
         postRepository.saveAll(Arrays.asList(post1, post2));
+
+        fernanda.getPosts().addAll(Arrays.asList(post1));
+        douglas.getPosts().addAll(Arrays.asList(post2));
+
+        userRepository.saveAll(Arrays.asList(fernanda, douglas));
+
     }
 }
