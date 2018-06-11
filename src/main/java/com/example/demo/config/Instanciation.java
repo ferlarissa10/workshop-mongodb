@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import com.example.demo.domain.Post;
 import com.example.demo.domain.User;
+import com.example.demo.dto.AutorDTO;
 import com.example.demo.repositories.PostRepository;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,12 @@ public class Instanciation implements CommandLineRunner {
         User fernanda = new User(null, "Fernanda", "fernandalarissahtp@gmail.com");
         User douglas = new User(null, "Douglas", "douglas@gmail.com");
 
-        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Primeiro Post", "Teste de postagem", fernanda);
-        Post post2 = new Post(null, sdf.parse("22/03/2018"), "Teste Post", "Teste de postagem 2", douglas);
-
         userRepository.saveAll(Arrays.asList(maria, fernanda, douglas));
+
+        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Primeiro Post", "Teste de postagem", new AutorDTO(fernanda));
+        Post post2 = new Post(null, sdf.parse("22/03/2018"), "Teste Post", "Teste de postagem 2", new AutorDTO(douglas));
+
+
         postRepository.saveAll(Arrays.asList(post1, post2));
     }
 }
